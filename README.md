@@ -1,37 +1,8 @@
----
-title: LLM Analysis Quiz Solver
-emoji: 🏃
-colorFrom: red
-colorTo: blue
-sdk: docker
-pinned: false
-app_port: 7860
----
-
 # LLM Analysis - Autonomous Quiz Solver Agent
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.121.3+-green.svg)](https://fastapi.tiangolo.com/)
 
 An intelligent, autonomous agent built with LangGraph and LangChain that solves data-related quizzes involving web scraping, data processing, analysis, and visualization tasks. The system uses Google's Gemini 2.5 Flash model to orchestrate tool usage and make decisions.
 
-## 📋 Table of Contents
-
-- [Overview](#overview)
-- [Architecture](#architecture)
-- [Features](#features)
-- [Project Structure](#project-structure)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Usage](#usage)
-- [API Endpoints](#api-endpoints)
-- [Tools &amp; Capabilities](#tools--capabilities)
-- [Docker Deployment](#docker-deployment)
-- [How It Works](#how-it-works)
-- [License](#license)
-
-## 🔍 Overview
+##  Overview
 
 This project was developed for the TDS (Tools in Data Science) course project, where the objective is to build an application that can autonomously solve multi-step quiz tasks involving:
 
@@ -42,7 +13,7 @@ This project was developed for the TDS (Tools in Data Science) course project, w
 
 The system receives quiz URLs via a REST API, navigates through multiple quiz pages, solves each task using LLM-powered reasoning and specialized tools, and submits answers back to the evaluation server.
 
-## 🏗️ Architecture
+##  Architecture
 
 The project uses a **LangGraph state machine** architecture with the following components:
 
@@ -70,18 +41,18 @@ The project uses a **LangGraph state machine** architecture with the following c
 3. **Tools Package** (`tools/`): Modular tools for different capabilities
 4. **LLM**: Google Gemini 2.5 Flash with rate limiting (9 requests per minute)
 
-## ✨ Features
+## Features
 
-- ✅ **Autonomous multi-step problem solving**: Chains together multiple quiz pages
-- ✅ **Dynamic JavaScript rendering**: Uses Playwright for client-side rendered pages
-- ✅ **Code generation & execution**: Writes and runs Python code for data tasks
-- ✅ **Flexible data handling**: Downloads files, processes PDFs, CSVs, images, etc.
-- ✅ **Self-installing dependencies**: Automatically adds required Python packages
-- ✅ **Robust error handling**: Retries failed attempts within time limits
-- ✅ **Docker containerization**: Ready for deployment on HuggingFace Spaces or cloud platforms
-- ✅ **Rate limiting**: Respects API quotas with exponential backoff
+-  **Autonomous multi-step problem solving**: Chains together multiple quiz pages
+-  **Dynamic JavaScript rendering**: Uses Playwright for client-side rendered pages
+-  **Code generation & execution**: Writes and runs Python code for data tasks
+-  **Flexible data handling**: Downloads files, processes PDFs, CSVs, images, etc.
+-  **Self-installing dependencies**: Automatically adds required Python packages
+-  **Robust error handling**: Retries failed attempts within time limits
+-  **Docker containerization**: Ready for deployment on HuggingFace Spaces or cloud platforms
+-  **Rate limiting**: Respects API quotas with exponential backoff
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 GENIE-SOLVER-TDS-Project-2/
@@ -100,7 +71,7 @@ GENIE-SOLVER-TDS-Project-2/
 └── README.md
 ```
 
-## 📦 Installation
+##  Installation
 
 ### Prerequisites
 
@@ -152,7 +123,7 @@ pip install -e .
 playwright install chromium
 ```
 
-## ⚙️ Configuration
+##  Configuration
 
 ### Environment Variables
 
@@ -173,7 +144,7 @@ GOOGLE_API_KEY=your_gemini_api_key_here
 2. Create a new API key
 3. Copy it to your `.env` file
 
-## 🚀 Usage
+##  Usage
 
 ### Local Development
 
@@ -213,7 +184,7 @@ Expected response:
 
 The agent will run in the background and solve the quiz chain autonomously.
 
-## 🌐 API Endpoints
+##  API Endpoints
 
 ### `POST /solve`
 
@@ -237,7 +208,7 @@ Receives quiz tasks and triggers the autonomous agent.
 | `400`     | Invalid JSON payload           |
 | `403`     | Invalid secret                 |
 
-### `GET /healthz`
+### `GET /health`
 
 Health check endpoint for monitoring.
 
@@ -250,7 +221,7 @@ Health check endpoint for monitoring.
 }
 ```
 
-## 🛠️ Tools & Capabilities
+##  Tools & Capabilities
 
 The agent has access to the following tools:
 
@@ -284,7 +255,7 @@ The agent has access to the following tools:
 - Uses `uv add` for fast package resolution
 - Enables the agent to adapt to different task requirements
 
-## 🐳 Docker Deployment
+##  Docker Deployment
 
 ### Build the Image
 
@@ -312,7 +283,7 @@ docker run -p 7860:7860 \
    - `GOOGLE_API_KEY`
 4. The Space will automatically build and deploy
 
-## 🧠 How It Works
+##  How It Works
 
 ### 1. Request Reception
 
@@ -368,7 +339,7 @@ The agent follows this loop:
 - Background task completes
 - Logs indicate success or failure
 
-## 📝 Key Design Decisions
+##  Key Design Decisions
 
 1. **LangGraph over Sequential Execution**: Allows flexible routing and complex decision-making
 2. **Background Processing**: Prevents HTTP timeouts for long-running quiz chains
@@ -378,14 +349,6 @@ The agent follows this loop:
 6. **Playwright for Scraping**: Handles JavaScript-rendered pages that `requests` cannot
 7. **uv for Dependencies**: Fast package resolution and installation
 
-## 📄 License
+##  License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
-**Author**: Shaikh MD Khasim Basith Nawaz
-**Course**: Tools in Data Science (TDS)
-**Institution**: IIT Madras
-
-For questions or issues, please open an issue on the [GitHub repository](https://github.com/23f3002766/tds-geniesolver).
